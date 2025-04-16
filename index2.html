@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fingerprint2 Example</title>
+    <!--    https://www.cdnpkg.com/fingerprintjs2/file/fingerprint2.js/?id=310262-->
+    <script type="text/javascript" src="https://unpkg.com/fingerprintjs2@2.1.4/fingerprint2.js"></script>
+</head>
+<body>
+<h1>浏览器指纹 ID</h1>
+<div id="fingerprint"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        Fingerprint2.get((components) => {
+            const values = components.map((component) => component.value);
+            const murmur = Fingerprint2.x64hash128(values.join(''), 31);
+            document.getElementById('fingerprint').innerText = '浏览器指纹 ID: ' + murmur;
+        });
+    });
+</script>
+</body>
+</html>
